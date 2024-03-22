@@ -1,5 +1,5 @@
 # Objective
-This project aims to set up a small virtual enterprise network with Mininet. There will be a campus network and a home network connected to a computer cluster network. The network will have routing policies for various end devices with given constraints in different networks. The devices' access to the servers from the campus and home networks will follow the shortest best-performance link with the shortest path available. In addition, a firewall will be implemented to completely isolate Devices 1 and 2 (d1,d2) from the network to simulate the devices being compromised by a bad actor.
+This project aims to set up a small virtual enterprise network with Mininet. There will be a campus network and a home network connected to a computer cluster network. The network will have routing policies for various end devices with given constraints in different networks. The devices' access to the servers from the campus and home networks will follow the shortest best-performance link with the shortest path available. In addition, a firewall will be implemented to completely isolate Devices 1 and 2 (d1,d2) from the network to simulate the devices being compromised by a bad actor. This is the final assignment for CSE 150 - 01 Introduction to Computer Networks, 2021 Spring Quarter, taught by Christina Leigh Parsa. See FinalProject.pdf for more details.
 
 Files submitted
 -----------------
@@ -66,12 +66,12 @@ h3 -> CCServer1 X d1 d2 h1 h2 h4
 h4 -> CCServer1 X d1 d2 h1 h2 h3 
 ```
 Since task 2 is about routing the shortest path between certain networks with the best performance link, I've hardcoded the paths in that way. I've used the source and destination IP addresses to figure out where the packet is going and switch_id to determine where a packet was received from. To send out the packet, the send function sends the packet to a specific port.
-
-Pseudocode:<br>
-check if IP packet<br>
-   	check switch ID for packet's current location<br>
-    	check destination ip and send out of port<br>
-
+```
+Pseudocode:
+check if IP packet
+   	check switch ID for packet's current location
+    	check destination ip and send out of port
+```
 Campus network (h1, h2, h3, h4) -> Home network (d1, d2):<br>
 switch1 -> switch3<br>
 
