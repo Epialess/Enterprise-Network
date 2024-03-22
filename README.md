@@ -3,7 +3,7 @@ This project aims to set up a small virtual enterprise network with Mininet. The
 
 Files submitted
 -----------------
-<p>final_dhcp.py: Topology code with dhcp for task 1<br>
+<p>final_dhcp.py: Topology code with DHCP for task 1<br>
 final_skele.py: Topology code for task 2 and task 3<br>
 task2_finalcontroller_skel.py: Controller code for task 2<br>
 task3_finalcontroller_skel.py: Controller code for task 3</p>
@@ -36,7 +36,7 @@ sudo ~/pox/pox.py proto.dhcpd --network=10.2.2.0/24 --ip=10.2.2.1 --first=1 --la
 Use the command links to see the connected links.
 
 3.In final_dhcp.py, comment the h1,h2,h3,h4 assignment part in the configure() function and then uncomment the d1 and d2 assignment part and save.<br>
-4.Stop dhcp server1 and in the same terminal run dhcp server 2 and run final_dhcp.py again.<br>
+4.Stop DHCP server1 and in the same terminal run DHCP server 2 and run final_dhcp.py again.<br>
 5.Repeat step 2. You should see that the DHCP server assigned d1 and d2 with these IP addresses: 
 ```
 <Host d1: d1-eth0:10.2.2.2 pid=21207> 
@@ -44,7 +44,7 @@ Use the command links to see the connected links.
 ```
 Task 2: Routing
 -----------------
-As per instructions, the controller file for task2 and task 3 needs to be placed in \~/pox/pox/misc and mininet file (final_skel.py) needs to be placed in your home directory (~).
+As per instructions, the controller file for task 2 and task 3 needs to be placed in \~/pox/pox/misc, and mininet file (final_skel.py) needs to be placed in your home directory (~).
 
 To start controller:<br>
 sudo ~/pox/pox.py misc.task2_finalcontroller_skel
@@ -69,8 +69,8 @@ Since task 2 is about routing the shortest path between certain networks with th
 ```
 Pseudocode:
 check if IP packet
-   	check switch ID for packet's current location
-    	check destination ip and send out of port
+   	check switch ID for the packet's current location
+    	   check destination ip and send out of port
 ```
 Campus network (h1, h2, h3, h4) -> Home network (d1, d2):<br>
 switch1 -> switch3<br>
@@ -80,7 +80,7 @@ In task 1, we only care about the campus network reaching the home network so h1
 Campus network (h1, h2, h3, h4) -> Computing Cluster network (CCServer1, CCServer2):<br>
 switch1 -> switch2 -> switch4<br>
 
-The reason why this route was chosen to reach CCServer1 instead of CCServer2 was because the link between switch 4 and CCServer1 has a greater bandwidth (best performance) than the link between switch5 and CCServer2. When pinging the campus network to the computing cluster network, we don't care about CCServer2 because CCServer1 is the shortest path so h1-h4 should only reach CCServer1 and vice versa.<br>
+The reason why this route was chosen to reach CCServer1 instead of CCServer2 was because the link between switch 4 and CCServer1 had a greater bandwidth (best performance) than the link between switch5 and CCServer2. When pinging the campus network to the computing cluster network, we don't care about CCServer2 because CCServer1 is the shortest path so h1-h4 should only reach CCServer1 and vice versa.<br>
 
 Task 3: Firewall
 ------------------
