@@ -1,10 +1,3 @@
-============================
-Name: Andy Choi
-Email: Achoi15@ucsc.edu
-Cruz ID: Achoi15
-Student ID number: 1674488
-============================
------------------
 Files submitted
 -----------------
 final_dhcp.py: Topology code with dhcp for task 1
@@ -12,7 +5,6 @@ final_skele.py: Topology code for task 2 and task 3
 task2_finalcontroller_skel.py: Controller code for task 2
 task3_finalcontroller_skel.py: Controller code for task 3
 
-------------------
 Task 1: Topology
 ------------------
 To start topology place it in ~ and run the command:
@@ -27,26 +19,24 @@ sudo ~/pox/pox.py proto.dhcpd --network=10.1.1.0/24 --ip=10.1.1.1 --first=1 --la
 DHCP server2 for d1 and d2 (Have to stop DHCP server1 first):
 sudo ~/pox/pox.py proto.dhcpd --network=10.2.2.0/24 --ip=10.2.2.1 --first=1 --last=None
 
-Testing:
-1.Start dhcp server1 in one terminal and then final_dhcp in another terminal
-2.Use the command dump to see all the switches and hosts with their IP addresses. You should see that the dhcp server assigned IP addresses to the campus network hosts:
-
-<Host h1: h1-eth0:10.1.1.10 pid=18860> 
-<Host h2: h2-eth0:10.1.1.11 pid=18862> 
-<Host h3: h3-eth0:10.1.1.12 pid=18864> 
-<Host h4: h4-eth0:10.1.1.13 pid=18866> 
+<p>Testing:<br>
+1.Start DHCP server1 in one terminal and then final_dhcp in another terminal<br>
+2.Use the command dump to see all the switches and hosts with their IP addresses. You should see that the DHCP server assigned IP addresses to the campus network hosts:</p>
+<p>
+\<Host h1: h1-eth0:10.1.1.10 pid=18860> 
+\<Host h2: h2-eth0:10.1.1.11 pid=18862> 
+\<Host h3: h3-eth0:10.1.1.12 pid=18864> 
+\<Host h4: h4-eth0:10.1.1.13 pid=18866> </p>
 
 Use the command links to see the connected links.
 
 3.In final_dhcp.py, comment the h1,h2,h3,h4 assignment part in the configure() function and then uncomment the d1 and d2 assignment part and save.
 4.Stop dhcp server1 and in the same terminal run dhcp server 2 and run final_dhcp.py again.
-5.Repeat step 2. You should see that the dhcp server assigned d1 and d2 with these IP addresses: 
+5.Repeat step 2. You should see that the DHCP server assigned d1 and d2 with these IP addresses: 
 
 <Host d1: d1-eth0:10.2.2.2 pid=21207> 
 <Host d2: d2-eth0:10.2.2.3 pid=21209> 
 
-
------------------
 Task 2: Routing
 -----------------
 As per instructions, the controller file for task2 and task 3 needs to be placed in ~/pox/pox/misc and mininet file (final_skel.py) needs to be placed in your home directory (~).
@@ -70,7 +60,7 @@ h2 -> CCServer1 X d1 d2 h1 h3 h4
 h3 -> CCServer1 X d1 d2 h1 h2 h4 
 h4 -> CCServer1 X d1 d2 h1 h2 h3 
 
-Since task 2 is about routing the shortest path between certain networks with the best performance link, I've hardcoded the paths in that way. I've use the source and destination IP addresses to figure out where the packet is going and switch_id to determine where a packet was recieved from. To send out the packet, the send function sends the packet to a specific port.
+Since task 2 is about routing the shortest path between certain networks with the best performance link, I've hardcoded the paths in that way. I've used the source and destination IP addresses to figure out where the packet is going and switch_id to determine where a packet was received from. To send out the packet, the send function sends the packet to a specific port.
 
 Pseudocode:
 check if IP packet
@@ -85,9 +75,8 @@ In task 1, we only care about the campus network reaching the home network so h1
 Campus network (h1, h2, h3, h4) -> Computing Cluster network (CCServer1, CCServer2):
 switch1 -> switch2 -> switch4
 
-The reason why this route was chosen to reach CCServer1 instead of CCServer2 was because the link between switch 4 and CCServer1 has a greater bandwidth (best performance) than the link between switch5 and CCServer2. When pinging the campus network to computing cluster network, we don't really care about CCServer2 because CCServer1 is the shortest path so h1-h4 should only reach CCServer1 and vice versa.
+The reason why this route was chosen to reach CCServer1 instead of CCServer2 was because the link between switch 4 and CCServer1 has a greater bandwidth (best performance) than the link between switch5 and CCServer2. When pinging the campus network to the computing cluster network, we don't care about CCServer2 because CCServer1 is the shortest path so h1-h4 should only reach CCServer1 and vice versa.
 
-------------------
 Task 3: Firewall
 ------------------
 To start controller:
@@ -109,4 +98,4 @@ h2 -> CCServer1 X X X h1 h3 h4
 h3 -> CCServer1 X X X h1 h2 h4 
 h4 -> CCServer1 X X X h1 h2 h3 
 
-As we can see, d1 or d2 cannot send or receive any ping packets while the other hosts are able to communicate with each other. This is done by adding a rule to drop the packet if the source or destination IP address is from the home network.
+As we can see, d1 or d2 cannot send or receive any ping packets while the other hosts can communicate with each other. This is done by adding a rule to drop the packet if the source or destination IP address is from the home network.
