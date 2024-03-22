@@ -1,9 +1,9 @@
 Files submitted
 -----------------
-final_dhcp.py: Topology code with dhcp for task 1
-final_skele.py: Topology code for task 2 and task 3
-task2_finalcontroller_skel.py: Controller code for task 2
-task3_finalcontroller_skel.py: Controller code for task 3
+<p>final_dhcp.py: Topology code with dhcp for task 1<br>
+final_skele.py: Topology code for task 2 and task 3<br>
+task2_finalcontroller_skel.py: Controller code for task 2<br>
+task3_finalcontroller_skel.py: Controller code for task 3</p>
 
 Task 1: Topology
 ------------------
@@ -13,20 +13,20 @@ sudo python ~/final_dhcp.py
 To clear controllers:
 sudo mn -c 
 
-DHCP server1 for h1-h4:
+DHCP server1 for h1-h4:<br>
 sudo ~/pox/pox.py proto.dhcpd --network=10.1.1.0/24 --ip=10.1.1.1 --first=1 --last=None
 
-DHCP server2 for d1 and d2 (Have to stop DHCP server1 first):
+DHCP server2 for d1 and d2 (Have to stop DHCP server1 first):<br>
 sudo ~/pox/pox.py proto.dhcpd --network=10.2.2.0/24 --ip=10.2.2.1 --first=1 --last=None
 
 <p>Testing:<br>
 1.Start DHCP server1 in one terminal and then final_dhcp in another terminal<br>
 2.Use the command dump to see all the switches and hosts with their IP addresses. You should see that the DHCP server assigned IP addresses to the campus network hosts:</p>
 <p>
-\<Host h1: h1-eth0:10.1.1.10 pid=18860> 
-\<Host h2: h2-eth0:10.1.1.11 pid=18862> 
-\<Host h3: h3-eth0:10.1.1.12 pid=18864> 
-\<Host h4: h4-eth0:10.1.1.13 pid=18866> </p>
+<Host h1: h1-eth0:10.1.1.10 pid=18860> 
+<Host h2: h2-eth0:10.1.1.11 pid=18862> 
+<Host h3: h3-eth0:10.1.1.12 pid=18864> 
+<Host h4: h4-eth0:10.1.1.13 pid=18866> </p>
 
 Use the command links to see the connected links.
 
