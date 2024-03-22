@@ -22,24 +22,26 @@ sudo ~/pox/pox.py proto.dhcpd --network=10.2.2.0/24 --ip=10.2.2.1 --first=1 --la
 <p>Testing:<br>
 1.Start DHCP server1 in one terminal and then final_dhcp in another terminal<br>
 2.Use the command dump to see all the switches and hosts with their IP addresses. You should see that the DHCP server assigned IP addresses to the campus network hosts:</p>
-<p>
-\<Host h1: h1-eth0:10.1.1.10 pid=18860\>
-\<Host h2: h2-eth0:10.1.1.11 pid=18862\> 
-\<Host h3: h3-eth0:10.1.1.12 pid=18864\> 
-\<Host h4: h4-eth0:10.1.1.13 pid=18866\> </p>
+
+```
+<Host h1: h1-eth0:10.1.1.10 pid=18860>
+<Host h2: h2-eth0:10.1.1.11 pid=18862\> 
+<Host h3: h3-eth0:10.1.1.12 pid=18864\> 
+<Host h4: h4-eth0:10.1.1.13 pid=18866\>
+```
 
 Use the command links to see the connected links.
 
 3.In final_dhcp.py, comment the h1,h2,h3,h4 assignment part in the configure() function and then uncomment the d1 and d2 assignment part and save.<br>
 4.Stop dhcp server1 and in the same terminal run dhcp server 2 and run final_dhcp.py again.<br>
 5.Repeat step 2. You should see that the DHCP server assigned d1 and d2 with these IP addresses: 
-
+```
 <Host d1: d1-eth0:10.2.2.2 pid=21207> 
 <Host d2: d2-eth0:10.2.2.3 pid=21209> 
-
+```
 Task 2: Routing
 -----------------
-As per instructions, the controller file for task2 and task 3 needs to be placed in ~/pox/pox/misc and mininet file (final_skel.py) needs to be placed in your home directory (~).
+As per instructions, the controller file for task2 and task 3 needs to be placed in \~/pox/pox/misc and mininet file (final_skel.py) needs to be placed in your home directory (~).
 
 To start controller:<br>
 sudo ~/pox/pox.py misc.task2_finalcontroller_skel
@@ -50,16 +52,16 @@ sudo python ~/final_skel.py
 Testing:<br>
 1.Start the controller in one terminal and then final_skel in another terminal<br>
 2.Use the command pingall. You should see:
-
-CCServer1 -> CCServer2 d1 d2 h1 h2 h3 h4 <br>
-CCServer2 -> CCServer1 X X X X X X <br>
-d1 -> CCServer1 X d2 h1 h2 h3 h4 <br>
-d2 -> CCServer1 X d1 h1 h2 h3 h4 <br>
-h1 -> CCServer1 X d1 d2 h2 h3 h4 <br>
-h2 -> CCServer1 X d1 d2 h1 h3 h4 <br>
-h3 -> CCServer1 X d1 d2 h1 h2 h4 <br>
-h4 -> CCServer1 X d1 d2 h1 h2 h3 <br>
-
+```
+CCServer1 -> CCServer2 d1 d2 h1 h2 h3 h4 
+CCServer2 -> CCServer1 X X X X X X 
+d1 -> CCServer1 X d2 h1 h2 h3 h4 
+d2 -> CCServer1 X d1 h1 h2 h3 h4 
+h1 -> CCServer1 X d1 d2 h2 h3 h4 
+h2 -> CCServer1 X d1 d2 h1 h3 h4 
+h3 -> CCServer1 X d1 d2 h1 h2 h4 
+h4 -> CCServer1 X d1 d2 h1 h2 h3 
+```
 Since task 2 is about routing the shortest path between certain networks with the best performance link, I've hardcoded the paths in that way. I've used the source and destination IP addresses to figure out where the packet is going and switch_id to determine where a packet was received from. To send out the packet, the send function sends the packet to a specific port.
 
 Pseudocode:<br>
@@ -88,14 +90,14 @@ sudo python ~/final_skel.py
 Testing:<br>
 1.Start the controller in one terminal and then final_skel in another terminal<br>
 2.Use the command pingall. You should see:
-
+```
 CCServer1 -> CCServer2 X X h1 h2 h3 h4
-CCServer2 -> CCServer1 X X X X X X <br>
-d1 -> X X X X X X X <br>
-d2 -> X X X X X X X <br>
-h1 -> CCServer1 X X X h2 h3 h4 <br>
-h2 -> CCServer1 X X X h1 h3 h4 <br>
-h3 -> CCServer1 X X X h1 h2 h4 <br>
-h4 -> CCServer1 X X X h1 h2 h3 <br>
-
+CCServer2 -> CCServer1 X X X X X X 
+d1 -> X X X X X X X 
+d2 -> X X X X X X X 
+h1 -> CCServer1 X X X h2 h3 h4 
+h2 -> CCServer1 X X X h1 h3 h4 
+h3 -> CCServer1 X X X h1 h2 h4 
+h4 -> CCServer1 X X X h1 h2 h3 
+```
 As we can see, d1 or d2 cannot send or receive any ping packets while the other hosts can communicate with each other. This is done by adding a rule to drop the packet if the source or destination IP address is from the home network.
