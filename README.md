@@ -1,5 +1,5 @@
 # Objective
-The objective of this project is to set up a small virtual enterprise network with mininet. There will be a campus network and a home network connected to a computer cluster network. The network will have routing policies for varius end devices with given constraints in different networks. The access from the campus and home networks to the servers will follow the shortest best performance link with the shortest path. In addition, a firewall will be implemented to completely isolate Device 1 and 2 (d1,d2) from the network as to simulate the devices being compromised by a bad actor.
+This project aims to set up a small virtual enterprise network with Mininet. There will be a campus network and a home network connected to a computer cluster network. The network will have routing policies for various end devices with given constraints in different networks. The devices' access to the servers from the campus and home networks will follow the shortest best-performance link with the shortest path available. In addition, a firewall will be implemented to completely isolate Devices 1 and 2 (d1,d2) from the network to simulate the devices being compromised by a bad actor.
 
 Files submitted
 -----------------
@@ -103,4 +103,4 @@ h2 -> CCServer1 X X X h1 h3 h4
 h3 -> CCServer1 X X X h1 h2 h4 
 h4 -> CCServer1 X X X h1 h2 h3 
 ```
-As we can see, d1 or d2 cannot send or receive any ping packets while the other hosts can communicate with each other. This is done by adding a rule to drop the packet if the source or destination IP address is from the home network.
+As we can see, d1 or d2 cannot send or receive any ICMP packets while the other hosts can communicate with each other. This is done by adding a rule to drop the packet if the source or destination IP address is from the home network.
