@@ -24,7 +24,7 @@ sudo ~/pox/pox.py proto.dhcpd --network=10.2.2.0/24 --ip=10.2.2.1 --first=1 --la
 2.Use the command dump to see all the switches and hosts with their IP addresses. You should see that the DHCP server assigned IP addresses to the campus network hosts:</p>
 
 ```
-<Host h1: h1-eth0:10.1.1.10 pid=18860>
+<Host h1: h1-eth0:10.1.1.10 pid=18860\>
 <Host h2: h2-eth0:10.1.1.11 pid=18862\> 
 <Host h3: h3-eth0:10.1.1.12 pid=18864\> 
 <Host h4: h4-eth0:10.1.1.13 pid=18866\>
