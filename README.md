@@ -1,3 +1,6 @@
+# Objective
+The objective of this project is to set up a small virtual enterprise network with mininet. There will be a campus network and a home network connected to a computer cluster network. The network will have routing policies for varius end devices with given constraints in different networks. The access from the campus and home networks to the servers will follow the shortest best performance link with the shortest path. In addition, a firewall will be implemented to completely isolate Device 1 and 2 (d1,d2) from the network as to simulate the devices being compromised by a bad actor.
+
 Files submitted
 -----------------
 <p>final_dhcp.py: Topology code with dhcp for task 1<br>
